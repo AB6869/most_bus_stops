@@ -1,4 +1,3 @@
-//import { MockedJourneyPatterns, MockedStopData } from "../__tests__/MockedData"
 import { useApiData } from "../api/useApiData"
 import { useEffect, useState } from "react"
 
@@ -26,11 +25,6 @@ const useBusStops = () => {
 
   const isLoading = stopDataLoading || journeyPatternLoading
   const error = stopDataError || journeyPatternError
-
-  // const StopData = MockedStopData.ResponseData.Result
-  // const JourneyPatterns = MockedJourneyPatterns.ResponseData.Result
-  // const [isLoading, setIsLoading] = useState(false)
-  // const error = false
 
   const filterBusByDirection = (journeyPatterns: JourneyPattern[]): JourneyPattern[] => {
     return journeyPatterns?.filter((journeyPattern: { DirectionCode: string }) => journeyPattern.DirectionCode === '1')
@@ -97,12 +91,9 @@ const useBusStops = () => {
   }, [JourneyPatterns, StopData, isLoading, error])
 
   useEffect(() => {
-    //setIsLoading(true)
     const populateMappedJourneyPatternsData = async () => {
       const topLinesWithStationName = mapStationNames()
       setMappedJourneyPatterns(topLinesWithStationName)
-      // //To make the test passing
-      // setTimeout(() => {setIsLoading(false), 1000})
     }
 
     populateMappedJourneyPatternsData()
